@@ -109,26 +109,41 @@ function gameController() {
     };
 }
 
+function render(board) {
+    const container = document.querySelector("#container");
+
+    for (let row = 0; row < board.length; row++) {
+        let rowDiv = document.createElement("div");
+        rowDiv.classList.add("row");
+        container.appendChild(rowDiv);
+    }
+}
+
+// game loop
 const game = gameController();
-
 while (true) {
-    let currentPlayer = game.getCurrentPlayer();
-    let board = GameBoard.getBoard();
+    const currentPlayer = game.getCurrentPlayer();
+    const board = GameBoard.getBoard();
 
-    console.log(`It is ${currentPlayer.name}'s turn`);
-    let x = prompt("Enter row");
-    let y = prompt("Enter column");
+    render(board);
+    break;
 
-    if (game.isValidMove(x, y)) {
-        game.updateBoard(x, y);
-        game.switchCurrentPlayer();
-        game.printBoard(board);
-    } else {
-        console.log("Invalid move.");
-    }
 
-    if (game.checkWin(board, currentPlayer)) {
-        console.log(game.checkWin(board, currentPlayer));
-        break;
-    }
+    // console.log(`It is ${currentPlayer.name}'s turn`);
+    // let x = prompt("Enter row");
+    // let y = prompt("Enter column");
+
+    // if (game.isValidMove(x, y)) {
+    //     game.updateBoard(x, y);
+    //     game.switchCurrentPlayer();
+    //     game.printBoard(board);
+    // } else {
+    //     console.log("Invalid move.");
+    // }
+
+    // if (game.checkWin(board, currentPlayer)) {
+    //     console.log(game.checkWin(board, currentPlayer));
+    //     break;
+    // }
+
 }
