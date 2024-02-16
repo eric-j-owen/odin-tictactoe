@@ -37,24 +37,7 @@ function gameController() {
     const checkWin = (board, player) => {
         const consecutiveMovesForWin = 3;
         let consecutiveMovesCount = 0;
-        let isDraw = true;
-
-        // check draw
-        for (let row = 0; row < board.length; row++) {
-            for (let col = 0; col < board[row].length; col++) {
-                if (board[row][col] === null) {
-                    isDraw = false;
-                    break;
-                }
-            }
-            if (!isDraw) {
-                break;
-            }
-        }
-        if (isDraw) {
-            return "It's a draw.";
-        }
-
+        
         // check rows
         for (let row = 0; row < board.length; row++) {
             consecutiveMovesCount = 0;
@@ -95,6 +78,25 @@ function gameController() {
             return `${player.name} wins!`;
         }
         consecutiveMovesCount = 0;
+
+        
+        // check draw
+        let isDraw = true;
+        for (let row = 0; row < board.length; row++) {
+            for (let col = 0; col < board[row].length; col++) {
+                if (board[row][col] === null) {
+                    isDraw = false;
+                    break;
+                }
+            }
+            if (!isDraw) {
+                break;
+            }
+        }
+        if (isDraw) {
+            return "It's a draw.";
+        }
+
 
         return false;
     };
