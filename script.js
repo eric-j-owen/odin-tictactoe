@@ -109,36 +109,25 @@ function gameController() {
     };
 }
 
-function render() {
-    const boardSelector = document.querySelector(".board");
-    const squares = document.querySelectorAll(".square");
-    for (const square of squares) {
-        square.addEventListener("click", function () {
-            console.log(this.dataset)
-        });
-    }
-
-    return {};
-}
-
 // game loop
+
 const game = gameController();
-while (true) {
-    const currentPlayer = game.getCurrentPlayer();
-    const board = GameBoard.getBoard();
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("square")) {
+        const currentPlayer = game.getCurrentPlayer();
+        const board = GameBoard.getBoard();
+        const { x, y } = e.target.dataset;
+        
+        if (game.isValidMove(x, y)) {
+            game.updateBoard(x, y);
+            game.switchCurrentPlayer();
+            game.printBoard(board);
+        } else {
+            console.log("Invalid move.");
+        }
 
-    render();
-    break;
-    // if (game.isValidMove(x, y)) {
-    //     game.updateBoard(x, y);
-    //     game.switchCurrentPlayer();
-    //     game.printBoard(board);
-    // } else {
-    //     console.log("Invalid move.");
-    // }
-
-    // if (game.checkWin(board, currentPlayer)) {
-    //     console.log(game.checkWin(board, currentPlayer));
-    //     break;
-    // }
-}
+        if (game.checkWin(board, currentPlayer)) {
+            console.log(game.checkWin(board, currentPlayer));
+        }
+    }
+});
