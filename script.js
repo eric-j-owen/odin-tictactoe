@@ -109,6 +109,15 @@ function gameController() {
     };
 }
 
+function renderController(x, y, playerMove) {
+    const squareEl = document.querySelectorAll(".square");
+    squareEl.forEach((sq) => {
+        if(sq.dataset.x === x && sq.dataset.y === y){
+            sq.textContent = playerMove;
+        }
+    })
+}
+
 // game loop
 
 const game = gameController();
@@ -117,11 +126,12 @@ document.addEventListener("click", function (e) {
         const currentPlayer = game.getCurrentPlayer();
         const board = GameBoard.getBoard();
         const { x, y } = e.target.dataset;
-        
+
         if (game.isValidMove(x, y)) {
             game.updateBoard(x, y);
-            game.switchCurrentPlayer();
+            renderController(x, y, currentPlayer.move);
             game.printBoard(board);
+            game.switchCurrentPlayer();
         } else {
             console.log("Invalid move.");
         }
