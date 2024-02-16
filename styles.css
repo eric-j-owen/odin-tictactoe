@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+}
+
+.vert {
+    border-inline: 2px solid grey;
+}
+.horizontal {
+    border-top: 2px solid grey;
+    border-bottom: 2px solid grey;
+}

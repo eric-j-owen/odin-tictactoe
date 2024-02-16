@@ -112,11 +112,11 @@ function gameController() {
 function render(board) {
     const container = document.querySelector("#container");
 
-    for (let row = 0; row < board.length; row++) {
-        let rowDiv = document.createElement("div");
-        rowDiv.classList.add("row");
-        container.appendChild(rowDiv);
-    }
+    // for (let row = 0; row < board.length; row++) {
+    //     let rowDiv = document.createElement("div");
+    //     rowDiv.classList.add("row");
+    //     container.appendChild(rowDiv);
+    // }
 }
 
 // game loop
