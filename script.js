@@ -109,14 +109,16 @@ function gameController() {
     };
 }
 
-function render(board) {
-    const container = document.querySelector("#container");
+function render() {
+    const boardSelector = document.querySelector(".board");
+    const squares = document.querySelectorAll(".square");
+    for (const square of squares) {
+        square.addEventListener("click", function () {
+            console.log(this.dataset)
+        });
+    }
 
-    // for (let row = 0; row < board.length; row++) {
-    //     let rowDiv = document.createElement("div");
-    //     rowDiv.classList.add("row");
-    //     container.appendChild(rowDiv);
-    // }
+    return {};
 }
 
 // game loop
@@ -125,14 +127,8 @@ while (true) {
     const currentPlayer = game.getCurrentPlayer();
     const board = GameBoard.getBoard();
 
-    render(board);
+    render();
     break;
-
-
-    // console.log(`It is ${currentPlayer.name}'s turn`);
-    // let x = prompt("Enter row");
-    // let y = prompt("Enter column");
-
     // if (game.isValidMove(x, y)) {
     //     game.updateBoard(x, y);
     //     game.switchCurrentPlayer();
@@ -145,5 +141,4 @@ while (true) {
     //     console.log(game.checkWin(board, currentPlayer));
     //     break;
     // }
-
 }
